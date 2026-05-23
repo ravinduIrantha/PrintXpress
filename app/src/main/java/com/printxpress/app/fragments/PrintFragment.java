@@ -77,6 +77,7 @@ public class PrintFragment extends Fragment {
     private String productId;
     private String userId;
     private double currentBasePrice = 0.0;
+    private double currentTotalAmount = 0.0;
     private long minScheduledTimestamp = 0;
     private long selectedScheduledTimestamp = 0;
     private final SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
@@ -264,8 +265,8 @@ public class PrintFragment extends Fragment {
 
         boolean isDelivery = binding.radioDelivery.isChecked();
 
-        double total = PriceCalculator.calculateTotal(category, size, material, qty, isDelivery);
-        binding.textEstimatedTotal.setText(String.format(Locale.getDefault(), "Rs. %.2f", total));
+        currentTotalAmount = PriceCalculator.calculateTotal(category, size, material, qty, isDelivery);
+        binding.textEstimatedTotal.setText(String.format(Locale.getDefault(), "Rs. %.2f", currentTotalAmount));
 
         updateSchedulingLogic(category, qty, isDelivery);
     }
@@ -407,8 +408,7 @@ public class PrintFragment extends Fragment {
                 order.put("createdAt", System.currentTimeMillis());
                 order.put("scheduledDate", selectedScheduledTimestamp);
                 
-                String totalStr = binding.textEstimatedTotal.getText().toString().replace("Rs. ", "");
-                order.put("totalAmount", Double.parseDouble(totalStr));
+                order.put("totalAmount", currentTotalAmount);
 
                 if (orderId != null) {
                     mDatabase.child("orders").child(userId).child(orderId).updateChildren(order)

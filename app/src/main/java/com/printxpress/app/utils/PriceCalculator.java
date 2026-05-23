@@ -63,21 +63,11 @@ public class PriceCalculator {
         Double base = CATEGORY_BASE_PRICES.get(category);
         double basePrice = (base != null) ? base : 10.0;
         
-        double sizeMult = 1.0;
-        for (Map.Entry<String, Double> entry : SIZE_MULTIPLIERS.entrySet()) {
-            if (size.contains(entry.getKey())) {
-                sizeMult = entry.getValue();
-                break;
-            }
-        }
+        Double sm = SIZE_MULTIPLIERS.get(size);
+        double sizeMult = (sm != null) ? sm : 1.0;
 
-        double matMult = 1.0;
-        for (Map.Entry<String, Double> entry : MATERIAL_MULTIPLIERS.entrySet()) {
-            if (material.contains(entry.getKey())) {
-                matMult = entry.getValue();
-                break;
-            }
-        }
+        Double mm = MATERIAL_MULTIPLIERS.get(material);
+        double matMult = (mm != null) ? mm : 1.0;
 
         double total = (basePrice * sizeMult * matMult) * quantity;
         

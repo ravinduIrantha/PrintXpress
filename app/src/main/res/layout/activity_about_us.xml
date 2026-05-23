@@ -413,13 +413,14 @@
                                 android:text="Email"
                                 android:textSize="12sp"
                                 android:textColor="@color/slate_500" />
+
                             <TextView
                                 android:id="@+id/tvEmail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="PrintXpress@gmai.com"
-                                android:textSize="15sp"
+                                android:text="PrintXpress@gmail.com"
                                 android:textColor="@color/slate_900"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>

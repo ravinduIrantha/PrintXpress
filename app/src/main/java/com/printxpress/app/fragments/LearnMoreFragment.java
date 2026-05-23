@@ -46,15 +46,9 @@ public class LearnMoreFragment extends Fragment {
 
         // ── WhatsApp ─────────────────────────────────────────────────────────
         binding.btnWhatsApp.setOnClickListener(v -> {
-            try {
-                Intent intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://wa.me/" + WHATSAPP_NUMBER.replace("+", "")));
-                startActivity(intent);
-            } catch (Exception e) {
-                Intent intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://wa.me/" + WHATSAPP_NUMBER.replace("+", "")));
-                startActivity(intent);
-            }
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://wa.me/" + WHATSAPP_NUMBER.replace("+", "")));
+            startActivity(intent);
         });
 
         // ── Email support ────────────────────────────────────────────────────

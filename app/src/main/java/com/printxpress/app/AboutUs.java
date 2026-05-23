@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AboutUs extends AppCompatActivity {
 
     private static final String PHONE_NUMBER = "+94412245476";
-    private static final String EMAIL_ADDRESS = "PrintXpress@gmai.com";
+    private static final String EMAIL_ADDRESS = "printxpress@gmail.com";
     private static final String WEBSITE_URL  = "https://www.printx.lk";
 
     @Override
@@ -31,45 +31,39 @@ public class AboutUs extends AppCompatActivity {
         LinearLayout layoutPhone   = findViewById(R.id.layoutPhone);
         LinearLayout layoutEmail   = findViewById(R.id.layoutEmail);
         LinearLayout layoutWebsite = findViewById(R.id.layoutWebsite);
+        TextView tvPhone           = findViewById(R.id.tvPhone);
+        TextView tvEmail           = findViewById(R.id.tvEmail);
+        TextView tvWebsite         = findViewById(R.id.tvWebsite);
         View btnBack               = findViewById(R.id.btnBack);
 
+        // Sync UI with constants
+        tvPhone.setText(PHONE_NUMBER);
+        tvEmail.setText(EMAIL_ADDRESS);
+        tvWebsite.setText(WEBSITE_URL.replace("https://", "").replace("http://", ""));
+
         // Custom Back Button
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        btnBack.setOnClickListener(v -> finish());
 
         // Phone — opens dialer
-        layoutPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + PHONE_NUMBER));
-                startActivity(intent);
-            }
+        layoutPhone.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + PHONE_NUMBER));
+            startActivity(intent);
         });
 
         // Email — opens mail app
-        layoutEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("mailto:" + EMAIL_ADDRESS));
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Inquiry - PrintX");
-                startActivity(Intent.createChooser(intent, "Send Email"));
-            }
+        layoutEmail.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:" + EMAIL_ADDRESS));
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Inquiry - PrintX");
+            startActivity(Intent.createChooser(intent, "Send Email"));
         });
 
         // Website — opens browser
-        layoutWebsite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(WEBSITE_URL));
-                startActivity(intent);
-            }
+        layoutWebsite.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(WEBSITE_URL));
+            startActivity(intent);
         });
     }
 
