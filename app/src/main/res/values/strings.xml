@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">PrintXpress</string>
+    <string name="welcome_user">Welcome, %1$s!</string>
+    <string name="welcome">Welcome!</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="create_account">Create Account</string>
+    <string name="join_printxpress">Join PrintXpress today</string>
+    <string name="login_subtitle">Fast, Geometric, Professional</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone">Phone Number</string>
+    <string name="dont_have_account">Don\'t have an account? Register</string>
+    <string name="already_have_account">Already have an account? Login</string>
+    <string name="logout">Logout</string>
+
+    <!-- Navigation -->
+    <string name="title_home">Home</string>
+    <string name="title_print">Print</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_upload">Upload</string>
+    <string name="title_profile">Profile</string>
+
+    <!-- Upload Fragment – existing -->
+    <string name="upload_design">Order Details</string>
+    <string name="click_to_select">Tap to select images of your design</string>
+    <string name="special_instructions">Special Instructions (optional)</string>
+    <string name="submit_for_printing">Submit for Printing</string>
+    <string name="selected_design_preview">Selected design preview</string>
+
+    <!-- Upload Fragment – new strings -->
+    <string name="upload_subtitle">Configure your print settings below</string>
+
+    <!-- Section headers -->
+    <string name="section_design">1 · Your Design</string>
+    <string name="section_instructions">2 · Instructions</string>
+    <string name="section_print_settings">3 · Print Settings</string>
+    <string name="section_delivery">4 · Delivery Option</string>
+
+    <!-- Dropdown hints -->
+    <string name="hint_category">Product Category</string>
+    <string name="hint_size">Size</string>
+    <string name="hint_material">Material / Paper Type</string>
+    <string name="hint_quantity">Quantity</string>
+
+    <!-- Delivery options -->
+    <string name="option_pickup">🏪  Store Pickup  –  Free</string>
+    <string name="option_delivery">🚚  Home Delivery  –  Fee applies</string>
+
+    <!-- Home Fragment -->
+    <string name="search_hint">Search printing services...</string>
+    <string name="hero_title">Fastest Printing in Sri Lanka</string>
+    <string name="hero_subtitle">Orders before 10 AM deliver same day.</string>
+    <string name="printing_status">Fast • Affordable • Delivered to your door</string>
+    <string name="product_categories">Product Categories</string>
+    <string name="view_all">View All</string>
+    <string name="special_offers">Special Offers</string>
+
+    <!-- Orders -->
+    <string name="edit_order">Edit Order</string>
+    <string name="edit_order_subtitle">Modify your order details below.</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="cancel_order">Cancel Order</string>
+    <string name="delete_confirm_title">Cancel Order?</string>
+    <string name="delete_confirm_msg">Are you sure you want to cancel this order?</string>
+    <string name="delete_yes">Yes, Cancel</string>
+    <string name="delete_no">No</string>
+    <string name="order_updated_msg">Order updated successfully</string>
+    <string name="order_deleted_msg">Order cancelled successfully</string>
+    <string name="error_too_late_to_edit">Cannot edit or cancel order after 6 hours or once processing has advanced.</string>
+
+    <string name="instructions_hint">Details or Text to Print (Mandatory if no image)</string>
+    <string name="estimated_total">Estimated Total</string>
+    <string name="price_initial">Rs. 0.00</string>
+
+    <!-- Errors -->
+    <string name="error_required">Field required</string>
+    <string name="error_invalid_email">Invalid email format</string>
+    <string name="error_password_match">Passwords do not match</string>
+    <string name="error_password_length">Password must be at least 6 characters</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

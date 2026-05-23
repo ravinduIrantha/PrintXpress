@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/textWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            android:textColor="@color/slate_800"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Search Bar -->
+        <EditText
+            android:id="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_search_bar"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="12dp"
+            android:hint="@string/search_hint"
+            android:paddingHorizontal="20dp"
+            android:textColorHint="@color/slate_600"
+            android:textSize="16sp"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textWelcome" />
+
+        <!-- Hero Card -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/heroCard"
+            android:layout_width="355dp"
+            android:layout_height="349dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_hero_gradient"
+            android:padding="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchView">
+
+            <TextView
+                android:id="@+id/heroTitle"
+                android:layout_width="274dp"
+                android:layout_height="181dp"
+                android:text="@string/hero_title"
+                android:textAlignment="center"
+                android:textColor="@color/slate_900"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/heroSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:alpha="0.9"
+                android:text="@string/hero_subtitle"
+                android:textAlignment="center"
+                android:textColor="#FFBE63"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/heroTitle" />
+
+            <TextView
+                android:id="@+id/herosubtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/printing_status"
+                android:textAlignment="center"
+                android:textColor="@color/slate_900"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/heroSubtitle"
+                app:layout_constraintVertical_bias="0.909" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/product_categories"
+            android:textColor="@color/slate_800"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heroCard" />
+
+        <TextView
+            android:id="@+id/viewAllCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:gravity="center_vertical|end"
+            android:text="@string/view_all"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/textCategories"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textCategories" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCategories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/textCategories"
+            tools:listitem="@layout/item_category" />
+
+        <TextView
+            android:id="@+id/textFeatured"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/special_offers"
+            android:textColor="@color/slate_800"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerCategories" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerFeatured"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/textFeatured"
+            tools:listitem="@layout/item_product" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

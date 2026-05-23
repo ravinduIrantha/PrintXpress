@@ -1,0 +1,44 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.PrintXpress" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/primary_light</item>
+        <item name="colorOnPrimaryContainer">@color/primary_dark</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/accent_light</item>
+
+        <!-- Background / Surface -->
+        <item name="android:windowBackground">@color/bg_slate</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/slate_900</item>
+        <item name="colorSurfaceVariant">@color/slate_100</item>
+        <item name="colorOnSurfaceVariant">@color/slate_600</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+        <!-- Typography Color -->
+        <item name="android:textColorPrimary">@color/slate_900</item>
+        <item name="android:textColorSecondary">@color/slate_600</item>
+    </style>
+
+    <style name="Theme.PrintXpress.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="RoundedImageView" parent="">
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="NavIndicatorStyle">
+        <item name="android:color">@color/primary_light</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.Full</item>
+    </style>
+</resources>

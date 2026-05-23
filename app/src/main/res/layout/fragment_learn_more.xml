@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <!-- Scrollable Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="24dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Hero Banner -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#6136B9"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📁 Upload the Right File"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Follow these guidelines to ensure your print comes out perfect every time."
+                    android:textColor="#D0C4F0"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="3dp" />
+            </LinearLayout>
+
+            <!-- ── SECTION 1: Accepted File Formats ── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✅  Accepted File Formats"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A2E"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="16dp">
+
+                <!-- Format Row: PDF -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+                    <TextView android:layout_width="44dp" android:layout_height="44dp"
+                        android:background="#E8F5E9" android:text="PDF"
+                        android:textColor="#2E7D32" android:textStyle="bold"
+                        android:textSize="12sp" android:gravity="center" />
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="PDF (Preferred)" android:textStyle="bold"
+                            android:textColor="#1A1A2E" android:textSize="14sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Best for text-heavy designs. Embed all fonts."
+                            android:textColor="#777777" android:textSize="12sp" />
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:background="#E8F5E9" android:text="✓ Best"
+                        android:textColor="#2E7D32" android:textSize="11sp"
+                        android:paddingHorizontal="8dp" android:paddingVertical="4dp" />
+                </LinearLayout>
+
+                <!-- Format Row: PNG -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+                    <TextView android:layout_width="44dp" android:layout_height="44dp"
+                        android:background="#E3F2FD" android:text="PNG"
+                        android:textColor="#1565C0" android:textStyle="bold"
+                        android:textSize="12sp" android:gravity="center" />
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="PNG" android:textStyle="bold"
+                            android:textColor="#1A1A2E" android:textSize="14sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Supports transparency. Min 300 DPI required."
+                            android:textColor="#777777" android:textSize="12sp" />
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:background="#E3F2FD" android:text="✓ Good"
+                        android:textColor="#1565C0" android:textSize="11sp"
+                        android:paddingHorizontal="8dp" android:paddingVertical="4dp" />
+                </LinearLayout>
+
+                <!-- Format Row: JPG -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+                    <TextView android:layout_width="44dp" android:layout_height="44dp"
+                        android:background="#FFF8E1" android:text="JPG"
+                        android:textColor="#F57F17" android:textStyle="bold"
+                        android:textSize="12sp" android:gravity="center" />
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="JPG / JPEG" android:textStyle="bold"
+                            android:textColor="#1A1A2E" android:textSize="14sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Good for photos. Use highest quality setting."
+                            android:textColor="#777777" android:textSize="12sp" />
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:background="#FFF8E1" android:text="✓ OK"
+                        android:textColor="#F57F17" android:textSize="11sp"
+                        android:paddingHorizontal="8dp" android:paddingVertical="4dp" />
+                </LinearLayout>
+
+                <!-- Format Row: AI / EPS -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:layout_width="44dp" android:layout_height="44dp"
+                        android:background="#FCE4EC" android:text="AI"
+                        android:textColor="#C62828" android:textStyle="bold"
+                        android:textSize="12sp" android:gravity="center" />
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="AI / EPS (Vector)" android:textStyle="bold"
+                            android:textColor="#1A1A2E" android:textSize="14sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Ideal for logos and scalable artwork."
+                            android:textColor="#777777" android:textSize="12sp" />
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:background="#FCE4EC" android:text="✓ Best"
+                        android:textColor="#C62828" android:textSize="11sp"
+                        android:paddingHorizontal="8dp" android:paddingVertical="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── SECTION 2: Resolution & Size ── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🖨️  Resolution &amp; Image Size"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A2E"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="16dp">
+
+                <!-- DPI row -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Minimum Resolution"
+                        android:textColor="#444444" android:textSize="14sp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="300 DPI" android:textStyle="bold"
+                        android:textColor="#6136B9" android:textSize="14sp" />
+                </LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#F0F0F0" />
+
+                <!-- Max size row -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Maximum File Size"
+                        android:textColor="#444444" android:textSize="14sp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="50 MB" android:textStyle="bold"
+                        android:textColor="#6136B9" android:textSize="14sp" />
+                </LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#F0F0F0" />
+
+                <!-- Color depth row -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Color Depth"
+                        android:textColor="#444444" android:textSize="14sp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="8-bit or 16-bit" android:textStyle="bold"
+                        android:textColor="#6136B9" android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── SECTION 3: Color Formats ── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎨  Color Formats"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A2E"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="16dp">
+
+                <!-- CMYK Card -->
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:background="#6136B9" android:padding="16dp"
+                    android:layout_marginEnd="8dp" android:elevation="2dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="CMYK" android:textColor="@color/white"
+                        android:textSize="18sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="⭐ Recommended for all print jobs. Colors are optimized for ink."
+                        android:textColor="#D0C4F0" android:textSize="12sp"
+                        android:lineSpacingExtra="3dp" />
+                </LinearLayout>
+
+                <!-- RGB Card -->
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical"
+                    android:background="@android:color/white" android:padding="16dp"
+                    android:elevation="2dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="RGB" android:textColor="#1A1A2E"
+                        android:textSize="18sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Accepted but will be auto-converted. Some color shift may occur."
+                        android:textColor="#777777" android:textSize="12sp"
+                        android:lineSpacingExtra="3dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── SECTION 4: Bleed Margins ── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📐  Bleed &amp; Safe Zone"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A2E"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bleed prevents white edges after trimming. Always extend your background color or image beyond the cut line."
+                    android:textColor="#555555"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="3dp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Bleed table -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:background="#6136B9"
+                    android:padding="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Zone"
+                        android:textColor="@color/white" android:textStyle="bold" android:textSize="13sp" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Size"
+                        android:textColor="@color/white" android:textStyle="bold" android:textSize="13sp" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Purpose"
+                        android:textColor="@color/white" android:textStyle="bold" android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:background="#F3EEFF"
+                    android:padding="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Bleed"
+                        android:textColor="#444444" android:textSize="13sp" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="3 mm"
+                        android:textColor="#6136B9" android:textStyle="bold" android:textSize="13sp" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Extends beyond trim"
+                        android:textColor="#444444" android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:background="@android:color/white"
+                    android:padding="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Safe Zone"
+                        android:textColor="#444444" android:textSize="13sp" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="3 mm"
+                        android:textColor="#6136B9" android:textStyle="bold" android:textSize="13sp" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Keep text inside"
+                        android:textColor="#444444" android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:background="#F3EEFF"
+                    android:padding="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Trim Line"
+                        android:textColor="#444444" android:textSize="13sp" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Final size"
+                        android:textColor="#6136B9" android:textStyle="bold" android:textSize="13sp" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Actual cut edge"
+                        android:textColor="#444444" android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── SECTION 5: Quick Checklist ── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✔️  Upload Checklist"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A2E"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="☑  File is PDF, PNG, JPG, or AI/EPS"
+                    android:textColor="#444444" android:textSize="14sp" android:layout_marginBottom="10dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="☑  Resolution is at least 300 DPI"
+                    android:textColor="#444444" android:textSize="14sp" android:layout_marginBottom="10dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="☑  Color mode is CMYK"
+                    android:textColor="#444444" android:textSize="14sp" android:layout_marginBottom="10dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="☑  3 mm bleed added on all sides"
+                    android:textColor="#444444" android:textSize="14sp" android:layout_marginBottom="10dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="☑  All fonts are embedded or outlined"
+                    android:textColor="#444444" android:textSize="14sp" android:layout_marginBottom="10dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="☑  File size is under 50 MB"
+                    android:textColor="#444444" android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- ── SECTION 6: FAQs ── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="❓  Frequently Asked Questions"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A2E"
+                android:layout_marginBottom="8dp" />
+
+            <!-- FAQ 1 -->
+            <LinearLayout
+                android:id="@+id/faq1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:focusable="true">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Can I upload a Word document or PowerPoint file?"
+                        android:textColor="#1A1A2E" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/faq1Arrow" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="▼"
+                        android:textColor="#6136B9" android:textSize="16sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/faq1Answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="We do not accept Word or PowerPoint files directly. Please export your design as a high-resolution PDF (300 DPI) before uploading."
+                    android:textColor="#666666"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="3dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- FAQ 2 -->
+            <LinearLayout
+                android:id="@+id/faq2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:focusable="true">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="My image looks fine on screen but blurry when printed. Why?"
+                        android:textColor="#1A1A2E" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/faq2Arrow" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="▼"
+                        android:textColor="#6136B9" android:textSize="16sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/faq2Answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Screens display images at 72 DPI while print requires at least 300 DPI. An image that looks sharp on screen can appear blurry when printed. Always use high-resolution source files."
+                    android:textColor="#666666"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="3dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- FAQ 3 -->
+            <LinearLayout
+                android:id="@+id/faq3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:focusable="true">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Will my colors look exactly the same as on my screen?"
+                        android:textColor="#1A1A2E" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/faq3Arrow" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="▼"
+                        android:textColor="#6136B9" android:textSize="16sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/faq3Answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Slight color differences are normal between screen (RGB) and print (CMYK). For accurate results, design in CMYK mode. If you need exact Pantone color matching, mention it in your order instructions."
+                    android:textColor="#666666"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="3dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- FAQ 4 -->
+            <LinearLayout
+                android:id="@+id/faq4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Can PrintXpress design my file for me?"
+                        android:textColor="#1A1A2E" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/faq4Arrow" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="▼"
+                        android:textColor="#6136B9" android:textSize="16sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/faq4Answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Yes! We offer professional design services. Contact our support team via WhatsApp or email and we'll prepare a print-ready file for you."
+                    android:textColor="#666666"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="3dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- ── SECTION 7: Support ── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎧  Need Help?"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A2E"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- WhatsApp -->
+                <LinearLayout
+                    android:id="@+id/btnWhatsApp"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="#25D366"
+                    android:padding="12dp"
+                    android:layout_marginBottom="10dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="💬  Chat on WhatsApp"
+                        android:textColor="@color/white" android:textSize="15sp"
+                        android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="→" android:textColor="@color/white" android:textSize="18sp" />
+                </LinearLayout>
+
+                <!-- Email -->
+                <LinearLayout
+                    android:id="@+id/btnEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="#6136B9"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="✉️  Email Support"
+                        android:textColor="@color/white" android:textSize="15sp"
+                        android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="→" android:textColor="@color/white" android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

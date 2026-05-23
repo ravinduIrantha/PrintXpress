@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_slate"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+<!--         ── Header-->
+        <TextView
+            android:id="@+id/textUploadTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_design"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/textUploadSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_subtitle"
+            android:textSize="13sp"
+            android:textColor="@color/slate_500"
+            android:layout_marginBottom="20dp"/>
+
+<!--        SECTION 1 : Design Upload-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/section_design"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:textAllCaps="true"
+            android:letterSpacing="0.08"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSelectImage"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="1dp"
+            android:layout_marginBottom="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imagePreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/selected_design_preview"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_upload"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/upload" />
+
+                <LinearLayout
+                    android:id="@+id/layoutUploadHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/click_to_select"
+                        android:textAlignment="center"
+                        android:textColor="@color/slate_900"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="-12dp"
+            android:layout_marginBottom="20dp"
+            android:paddingHorizontal="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PNG · JPG · PDF · AI  |  Min 300 DPI"
+                android:textColor="@color/slate_500"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvLearnMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📋 File Requirements"
+                android:textColor="@color/primary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:paddingVertical="6dp"
+                android:paddingHorizontal="4dp" />
+
+        </LinearLayout>
+
+
+<!--        SECTION 2 : Instructions-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/section_instructions"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:textAllCaps="true"
+            android:letterSpacing="0.08"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/instructionsLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/instructions_hint"
+            android:layout_marginBottom="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/instructionsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:minLines="3"
+                android:importantForAutofill="no"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--         SECTION 3 : Print Settings-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/section_print_settings"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:textAllCaps="true"
+            android:letterSpacing="0.08"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Category -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutCategory"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_category"
+            android:layout_marginBottom="12dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/spinnerCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:importantForAutofill="no"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Size -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutSize"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_size"
+            android:layout_marginBottom="12dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/spinnerSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:importantForAutofill="no"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Material / Paper Type -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutMaterial"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_material"
+            android:layout_marginBottom="12dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/spinnerMaterial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:importantForAutofill="no"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Quantity -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutQuantity"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_quantity"
+            android:layout_marginBottom="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        SECTION 4 : Delivery Option-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/section_delivery"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:textAllCaps="true"
+            android:letterSpacing="0.08"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/slate_200"
+            app:strokeWidth="1dp"
+            android:layout_marginBottom="20dp">
+
+            <RadioGroup
+                android:id="@+id/radioGroupDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <RadioButton
+                    android:id="@+id/radioPickup"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:checked="true"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/option_pickup"
+                    android:textColor="@color/slate_900"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/slate_100"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"/>
+
+                <RadioButton
+                    android:id="@+id/radioDelivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/option_delivery"
+                    android:textColor="@color/slate_900"
+                    android:textSize="14sp" />
+            </RadioGroup>
+        </com.google.android.material.card.MaterialCardView>
+
+<!--        SECTION 5 : Scheduling-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5 · Scheduling"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:textAllCaps="true"
+            android:letterSpacing="0.08"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/slate_200"
+            app:strokeWidth="1dp"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/textEarliestDateHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Earliest possible: Calculation..."
+                    android:textColor="@color/slate_600"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="12dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutScheduledDate"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Select Pickup/Delivery Date"
+                    app:startIconDrawable="@android:drawable/ic_menu_my_calendar">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editScheduledDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:importantForAutofill="no"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+<!--        Price Summary-->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            android:backgroundTint="@color/primary_light"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/estimated_total"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/textEstimatedTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price_initial"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+<!--        Submit Button-->
+        <Button
+            android:id="@+id/buttonUploadOrder"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/submit_for_printing"
+            android:textSize="15sp"
+            android:layout_marginBottom="12dp"/>
+
+<!--        Progress-->
+        <ProgressBar
+            android:id="@+id/progressBarUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

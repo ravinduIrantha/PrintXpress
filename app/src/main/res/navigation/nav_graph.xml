@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.printxpress.app.fragments.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_category"
+            app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_home_to_productDetail"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_orders"
+        android:name="com.printxpress.app.fragments.OrderFragment"
+        android:label="@string/title_orders"
+        tools:layout="@layout/fragment_order">
+        <action
+            android:id="@+id/action_order_to_detail"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_upload"
+        android:name="com.printxpress.app.fragments.PrintFragment"
+        android:label="@string/title_print"
+        tools:layout="@layout/fragment_print">
+        <argument
+            android:name="orderId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="productId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="category"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="initialSize"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="initialMaterial"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_print_to_learnMore"
+            app:destination="@id/learnMoreFragment" />
+        <action
+            android:id="@+id/action_print_to_address"
+            app:destination="@id/addressFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.printxpress.app.fragments.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profile_to_edit"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profile_to_address"
+            app:destination="@id/addressFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.printxpress.app.fragments.CategoryFragment"
+        android:label="Category"
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_category_to_productDetail"
+            app:destination="@id/productDetailFragment" />
+        <argument
+            android:name="searchQuery"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.printxpress.app.fragments.ProductDetailFragment"
+        android:label="Product Detail"
+        tools:layout="@layout/fragment_product_detail">
+        <action
+            android:id="@+id/action_productDetail_to_upload"
+            app:destination="@id/navigation_upload" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.printxpress.app.fragments.OrderDetailFragment"
+        android:label="Order Detail"
+        tools:layout="@layout/fragment_order_detail">
+        <action
+            android:id="@+id/action_detail_to_track"
+            app:destination="@id/trackOrderFragment" />
+        <action
+            android:id="@+id/action_detail_to_editOrder"
+            app:destination="@id/navigation_upload" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/trackOrderFragment"
+        android:name="com.printxpress.app.fragments.TrackOrderFragment"
+        android:label="Track Order"
+        tools:layout="@layout/fragment_track_order" />
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.printxpress.app.fragments.EditProfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile" />
+
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.printxpress.app.fragments.AddressFragment"
+        android:label="Address"
+        tools:layout="@layout/fragment_address" />
+
+    <fragment
+        android:id="@+id/learnMoreFragment"
+        android:name="com.printxpress.app.fragments.LearnMoreFragment"
+        android:label="Print File Requirements"
+        tools:layout="@layout/fragment_learn_more" />
+
+</navigation>
