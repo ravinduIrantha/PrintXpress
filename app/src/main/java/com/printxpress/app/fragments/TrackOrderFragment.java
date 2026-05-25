@@ -1,5 +1,7 @@
 package com.printxpress.app.fragments;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import com.printxpress.app.R;
 import com.printxpress.app.databinding.FragmentTrackOrderBinding;
+import com.printxpress.app.models.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,6 +25,17 @@ public class TrackOrderFragment extends Fragment {
     private FragmentTrackOrderBinding binding;
     private DatabaseReference mDatabase;
     private String orderId;
+    private Order currentOrder;
+    private final Handler refreshHandler = new Handler(Looper.getMainLooper());
+    private final Runnable refreshRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (currentOrder != null) {
+                updateUI(currentOrder);
+            }
+            refreshHandler.postDelayed(this, 1000); // Refresh every second
+        }
+    };
 
     @Nullable
     @Override
@@ -41,6 +55,18 @@ public class TrackOrderFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshHandler.post(refreshRunnable);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        refreshHandler.removeCallbacks(refreshRunnable);
+    }
+
     private void trackOrder(String id) {
         String userId = FirebaseAuth.getInstance().getUid();
         if (userId == null) return;
@@ -50,8 +76,8 @@ public class TrackOrderFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (binding == null) return;
                 if (snapshot.exists()) {
-                    String status = snapshot.child("status").getValue(String.class);
-                    updateUI(status);
+                    currentOrder = snapshot.getValue(Order.class);
+                    updateUI(currentOrder);
                 }
             }
 
@@ -61,23 +87,27 @@ public class TrackOrderFragment extends Fragment {
         });
     }
 
-    private void updateUI(String status) {
+    private void updateUI(Order order) {
+        if (order == null || getContext() == null) return;
+
         int activeColor = ContextCompat.getColor(getContext(), R.color.primary);
         int inactiveColor = ContextCompat.getColor(getContext(), android.R.color.darker_gray);
 
-        if ("Processing".equals(status)) {
-            binding.checkProcessing.setColorFilter(activeColor);
-            binding.checkPrinting.setColorFilter(inactiveColor);
-            binding.checkReady.setColorFilter(inactiveColor);
-        } else if ("Printing".equals(status)) {
-            binding.checkProcessing.setColorFilter(activeColor);
-            binding.checkPrinting.setColorFilter(activeColor);
-            binding.checkReady.setColorFilter(inactiveColor);
-        } else if ("Ready".equals(status)) {
-            binding.checkProcessing.setColorFilter(activeColor);
-            binding.checkPrinting.setColorFilter(activeColor);
-            binding.checkReady.setColorFilter(activeColor);
-        }
+        String status = order.getStatus();
+        long now = System.currentTimeMillis();
+        long sixHoursInMillis = 6 * 60 * 60 * 1000;
+
+        // 1. Ready Step: Highlight if status is Ready OR past scheduled date
+        boolean isReady = "Ready".equals(status) || (order.getScheduledDate() != null && now > order.getScheduledDate());
+
+        // 2. Printing Step: Highlight if status is Printing (or further) OR > 6 hours since creation
+        boolean timeThresholdPassed = order.getCreatedAt() != null && (now - order.getCreatedAt() > sixHoursInMillis);
+        boolean isPrinting = isReady || "Printing".equals(status) || timeThresholdPassed;
+
+        // Apply colors
+        binding.checkProcessing.setColorFilter(activeColor); // Always highlighted
+        binding.checkPrinting.setColorFilter(isPrinting ? activeColor : inactiveColor);
+        binding.checkReady.setColorFilter(isReady ? activeColor : inactiveColor);
     }
 
     @Override

@@ -56,7 +56,6 @@ public class PriceCalculator {
         MATERIAL_MULTIPLIERS.put("Ceramic", 1.0);
         MATERIAL_MULTIPLIERS.put("Enamel", 1.2);
     }
-
     public static final double DELIVERY_FEE = 350.00;
 
     public static double calculateTotal(String category, String size, String material, int quantity, boolean isDelivery) {

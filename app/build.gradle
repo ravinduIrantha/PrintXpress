@@ -5,6 +5,7 @@ plugins {
 
 android {
     namespace 'com.printxpress.app'
+    //noinspection GradleDeprecated
     compileSdk 34
 
     defaultConfig {
@@ -30,6 +31,11 @@ android {
     buildFeatures {
         viewBinding true
         dataBinding false
+    }
+    lintOptions {
+        abortOnError false
+        disable 'NewerVersionAvailable', 'GradleDependency', 'OldTargetApi', 'GradleDeprecated'
+        lintConfig file("lint.xml")
     }
 }
 

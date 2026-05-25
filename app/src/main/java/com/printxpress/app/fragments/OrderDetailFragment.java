@@ -1,5 +1,7 @@
 package com.printxpress.app.fragments;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,17 @@ public class OrderDetailFragment extends Fragment {
     private DatabaseReference mDatabase;
     private String orderId;
     private String userId;
+    private Order currentOrder;
+    private final Handler refreshHandler = new Handler(Looper.getMainLooper());
+    private final Runnable refreshRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (currentOrder != null) {
+                checkEligibility(currentOrder);
+            }
+            refreshHandler.postDelayed(this, 60*1000);
+        }
+    };
 
     @Nullable
     @Override
@@ -61,15 +74,28 @@ public class OrderDetailFragment extends Fragment {
         binding.buttonCancelOrder.setOnClickListener(v -> confirmCancellation());
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshHandler.post(refreshRunnable);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        refreshHandler.removeCallbacks(refreshRunnable);
+    }
+
     private void loadOrderDetails(String id) {
         if (userId == null) return;
 
-        mDatabase.child("orders").child(userId).child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("orders").child(userId).child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (binding == null) return;
-                Order order = snapshot.getValue(Order.class);
-                if (order != null) {
+                currentOrder = snapshot.getValue(Order.class);
+                if (currentOrder != null) {
+                    Order order = currentOrder;
                     String category = order.getCategory() != null ? order.getCategory() : "Item";
                     String displayTitle = category;
                     if (category.equalsIgnoreCase("Cards") || category.equalsIgnoreCase("Business Cards")) {

@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
 //         DatabaseSeeder.seedDatabase();
         scheduleSpecialOfferNotification();
+
     }
 
     private void scheduleSpecialOfferNotification() {

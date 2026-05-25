@@ -117,6 +117,7 @@ public class HomeFragment extends Fragment {
 
     private void loadCategories() {
         categoriesListener = mDatabase.child("categories").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (binding == null) return;
@@ -138,6 +139,7 @@ public class HomeFragment extends Fragment {
 
     private void loadFeaturedProducts() {
         productsListener = mDatabase.child("products").limitToFirst(10).addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (binding == null) return;

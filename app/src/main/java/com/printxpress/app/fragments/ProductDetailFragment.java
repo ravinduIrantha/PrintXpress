@@ -110,6 +110,9 @@ public class ProductDetailFragment extends Fragment {
             bundle.putString("initialMaterial", binding.spinnerMaterial.getSelectedItem().toString());
         }
 
+        String qty = binding.editQuantity.getText().toString();
+        bundle.putString("initialQuantity", qty);
+
         Navigation.findNavController(requireView()).navigate(R.id.action_productDetail_to_upload, bundle);
     }
 

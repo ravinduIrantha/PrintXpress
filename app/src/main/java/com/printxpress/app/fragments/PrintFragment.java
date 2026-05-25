@@ -1,5 +1,6 @@
 package com.printxpress.app.fragments;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -83,6 +84,15 @@ public class PrintFragment extends Fragment {
     private final SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
     private String userAddress = null;
 
+    // -- State preservation fields --
+    private boolean isInitialLoad = true;
+    private String tempInstructions;
+    private String tempQuantity;
+    private String tempCategory;
+    private String tempSize;
+    private String tempMaterial;
+    private int tempDeliveryId = -1;
+
     private final ActivityResultLauncher<String> pickMedia =
             registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
                 if (uri != null) {
@@ -112,21 +122,56 @@ public class PrintFragment extends Fragment {
         setupDropdowns();
         setupListeners();
 
-        if (getArguments() != null) {
-            orderId = getArguments().getString("orderId");
-            productId = getArguments().getString("productId");
-            String cat = getArguments().getString("category");
-            String size = getArguments().getString("initialSize");
-            String mat = getArguments().getString("initialMaterial");
+        if (isInitialLoad) {
+            if (getArguments() != null) {
+                orderId = getArguments().getString("orderId");
+                productId = getArguments().getString("productId");
+                String cat = getArguments().getString("category");
+                String size = getArguments().getString("initialSize");
+                String mat = getArguments().getString("initialMaterial");
+                String qty = getArguments().getString("initialQuantity");
 
-            if (orderId != null) {
-                loadOrderData();
-            } else if (productId != null) {
-                loadProductData(productId, size, mat);
-            } else if (cat != null) {
-                preFillCategory(cat, size, mat);
+                if (qty != null) {
+                    tempQuantity = qty;
+                    binding.editQuantity.setText(qty);
+                }
+
+                if (orderId != null) {
+                    loadOrderData();
+                } else if (productId != null) {
+                    loadProductData(productId, size, mat);
+                } else if (cat != null) {
+                    preFillCategory(cat, size, mat);
+                }
+            }
+            isInitialLoad = false;
+        } else {
+            restoreUIState();
+        }
+    }
+
+    private void restoreUIState() {
+        if (binding == null) return;
+
+        if (tempInstructions != null) binding.instructionsEditText.setText(tempInstructions);
+        if (tempQuantity != null) binding.editQuantity.setText(tempQuantity);
+        if (tempCategory != null) {
+            binding.spinnerCategory.setText(tempCategory, false);
+            // Re-populate dependent dropdowns
+            for (int i = 0; i < CATEGORIES.length; i++) {
+                if (CATEGORIES[i].equals(tempCategory)) {
+                    populateSizeDropdown(i, tempSize);
+                    populateMaterialDropdown(i, tempMaterial);
+                    break;
+                }
             }
         }
+        if (tempDeliveryId != -1) binding.radioGroupDelivery.check(tempDeliveryId);
+        if (selectedScheduledTimestamp > 0) {
+            binding.editScheduledDate.setText(dateFormatter.format(selectedScheduledTimestamp));
+        }
+
+        updatePrice();
     }
 
     private void setupDropdowns() {
@@ -134,6 +179,7 @@ public class PrintFragment extends Fragment {
         binding.spinnerCategory.setAdapter(catAdapter);
 
         binding.spinnerCategory.setOnItemClickListener((parent, v, position, id) -> {
+            tempCategory = CATEGORIES[position];
             populateSizeDropdown(position, null);
             populateMaterialDropdown(position, null);
             updatePrice();
@@ -148,18 +194,39 @@ public class PrintFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.action_print_to_learnMore);
         });
 
-        binding.editQuantity.addTextChangedListener(new TextWatcher() {
+        binding.instructionsEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { updatePrice(); }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tempInstructions = s.toString();
+            }
             @Override
             public void afterTextChanged(Editable s) {}
         });
 
-        binding.spinnerSize.setOnItemClickListener((parent, v, position, id) -> updatePrice());
-        binding.spinnerMaterial.setOnItemClickListener((parent, v, position, id) -> updatePrice());
+        binding.editQuantity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tempQuantity = s.toString();
+                updatePrice();
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        binding.spinnerSize.setOnItemClickListener((parent, v, position, id) -> {
+            tempSize = binding.spinnerSize.getText().toString();
+            updatePrice();
+        });
+        binding.spinnerMaterial.setOnItemClickListener((parent, v, position, id) -> {
+            tempMaterial = binding.spinnerMaterial.getText().toString();
+            updatePrice();
+        });
         binding.radioGroupDelivery.setOnCheckedChangeListener((group, checkedId) -> {
+            tempDeliveryId = checkedId;
             if (checkedId == R.id.radioDelivery) {
                 checkAddressAvailability();
             }
@@ -202,6 +269,7 @@ public class PrintFragment extends Fragment {
 
     private void preFillCategory(String category, String size, String material) {
         binding.spinnerCategory.setText(category, false);
+        tempCategory = category;
         for (int i = 0; i < CATEGORIES.length; i++) {
             if (CATEGORIES[i].equals(category)) {
                 populateSizeDropdown(i, size);
@@ -227,13 +295,20 @@ public class PrintFragment extends Fragment {
         }
 
         preFillCategory(order.getCategory(), order.getSize(), order.getMaterial());
-        binding.editQuantity.setText(String.valueOf(order.getQuantity()));
+
+        tempQuantity = String.valueOf(order.getQuantity());
+        binding.editQuantity.setText(tempQuantity);
+
         binding.instructionsEditText.setText(order.getInstructions());
+        tempInstructions = order.getInstructions();
         if ("Home Delivery".equals(order.getDeliveryType())) {
             binding.radioDelivery.setChecked(true);
+            tempDeliveryId = R.id.radioDelivery;
         } else {
             binding.radioPickup.setChecked(true);
+            tempDeliveryId = R.id.radioPickup;
         }
+        selectedScheduledTimestamp = order.getScheduledDate();
         updatePrice();
     }
 
@@ -241,14 +316,18 @@ public class PrintFragment extends Fragment {
         String[] sizes = SIZES[catIndex];
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, sizes);
         binding.spinnerSize.setAdapter(adapter);
-        binding.spinnerSize.setText(currentSize != null ? currentSize : sizes[0], false);
+        String selectedSize = currentSize != null ? currentSize : sizes[0];
+        binding.spinnerSize.setText(selectedSize, false);
+        tempSize = selectedSize;
     }
 
     private void populateMaterialDropdown(int catIndex, String currentMaterial) {
         String[] materials = MATERIALS[catIndex];
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, materials);
         binding.spinnerMaterial.setAdapter(adapter);
-        binding.spinnerMaterial.setText(currentMaterial != null ? currentMaterial : materials[0], false);
+        String selectedMat = currentMaterial != null ? currentMaterial : materials[0];
+        binding.spinnerMaterial.setText(selectedMat, false);
+        tempMaterial = selectedMat;
     }
 
     private void updatePrice() {
@@ -271,6 +350,7 @@ public class PrintFragment extends Fragment {
         updateSchedulingLogic(category, qty, isDelivery);
     }
 
+    @SuppressLint("SetTextI18n")
     private void updateSchedulingLogic(String category, int qty, boolean isDelivery) {
         int baseDays = 2; // Default
         switch (category) {

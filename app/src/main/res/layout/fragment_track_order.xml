@@ -45,10 +45,11 @@
                     android:src="@drawable/ic_home" />
 
                 <TextView
+                    android:id="@+id/textProcessingLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Processing"
+                    android:text="Preparing"
                     android:textSize="18sp" />
             </LinearLayout>
 
